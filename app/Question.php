@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
@@ -16,7 +17,7 @@ class Question extends Model
         return $this->belongsTo(User::class);
     }
 
-    //slug / we do not want set manually, so we need to set umutator
+    //slug / we do not want set manually, so we need to set mutator
     //fun has to start with set
     public function setTitleAttribute($value)
     {
