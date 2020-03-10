@@ -45,5 +45,10 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
-    
+    //format Accessor - allows format eloquent attrbute when we retrieve it// start with get and end with Atttribute
+    public function getUrlAttribute()
+    {
+        //return route("questions.show", $this->id);
+        return '#';
+    }
 }
