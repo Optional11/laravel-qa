@@ -55,7 +55,10 @@ class QuestionsController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        //to increment count of views
+        $question->increment('views');
+
+        return view('questions.show', compact('question'));
     }
 
     /**
@@ -95,4 +98,6 @@ class QuestionsController extends Controller
 
         return redirect('/questions')->with('success', "Your question has been deleted.");
     }
+
+    
 }

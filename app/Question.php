@@ -28,7 +28,7 @@ class Question extends Model
     //format Accessor - allows format eloquent attrbute when we retrieve it// start with get and end with Atttribute
     public function getUrlAttribute()
     {
-        return route("questions.show", $this->id);
+        return route("questions.show", $this->slug);
     }
 
     public function getCreatedDateAttribute()
@@ -45,5 +45,11 @@ class Question extends Model
             return "answered";
         }
         return "unanswered";
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        //to transform from markup to html using accessor
+        return \Parsedown::instance()->text($this->body);
     }
 }
