@@ -2,11 +2,12 @@
 
 namespace App;
 
+use App\Answer;
 use App\Question;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,11 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+    // defining relationship among Answer and User
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 
     //format Accessor - allows format eloquent attrbute when we retrieve it// start with get and end with Atttribute

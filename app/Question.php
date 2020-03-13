@@ -17,6 +17,12 @@ class Question extends Model
         return $this->belongsTo(User::class);
     }
 
+    // defining relationship among Answer and Question
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     //slug / we do not want set manually, so we need to set mutator // start with set and end with Atttribute
     //fun has to start with set
     public function setTitleAttribute($value)
@@ -38,7 +44,7 @@ class Question extends Model
 
     public function getStatusAttribute()
     {
-        if ($this->answers >0) {
+        if ($this->answers_count >0) {
             if($this->best_answer_id){
                 return "answered-accepted";
             }
