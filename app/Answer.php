@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+
+    protected $fillable = ['body', 'user_id'];
+
     // defining relationship among Answer and Question
     public function question()
     {
