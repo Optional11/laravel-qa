@@ -28,3 +28,7 @@ Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.sho
 
 // route for singel action controller - it is doing only one thing - doenst have his own view
 Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept'); 
+
+//routes to handle favorite question / not own view
+Route::post('/questions/{question}/favorites', 'FavoritesController@store')->name('questions.favorite');
+Route::delete('/questions/{question}/favorites', 'FavoritesController@destroy')->name('questions.unfavorite');

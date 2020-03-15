@@ -65,4 +65,26 @@ class Question extends Model
         $this->best_answer_id = $answer->id;
         $this->save();
     }
+
+    //many to many relation / second param because of we have our name of table, laravel consider
+    //by default question_user
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps(); //, 'question_id', 'user_id');
+    }
+
+    public function isFavorited()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->count() > 0;
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
+    public function getFavoritesCountAttribute()
+    {
+        return $this->favorites->count();
+    }
 }
