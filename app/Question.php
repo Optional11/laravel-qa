@@ -58,4 +58,11 @@ class Question extends Model
         //to transform from markup to html using accessor
         return \Parsedown::instance()->text($this->body);
     }
+
+    //to change best answer in db
+    public function acceptBestAnswer(Answer $answer)
+    {
+        $this->best_answer_id = $answer->id;
+        $this->save();
+    }
 }

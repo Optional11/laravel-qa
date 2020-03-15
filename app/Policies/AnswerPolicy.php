@@ -33,4 +33,10 @@ class AnswerPolicy
     {
         return $user->id === $answer->user_id;
     }
+
+    //policy to who can mark answer as best - connected to single action controller
+    public function accept(User $user, Answer $answer)
+    {
+        return $user->id === $answer->question->user_id;
+    }
 }
