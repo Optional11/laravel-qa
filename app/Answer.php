@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
 
+    use VotableTrait;
+
     protected $fillable = ['body', 'user_id'];
 
     // defining relationship among Answer and Question
@@ -55,7 +57,7 @@ class Answer extends Model
         parent::boot();
 
         static::created(function ($answer) {
-            $answer->question->increment('answers_count');            
+            $answer->question->increment('answers_count');
         });
         
         static::deleted(function ($answer) {
@@ -63,18 +65,4 @@ class Answer extends Model
         });
     }
 
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
-
-    public function upVotes()
-    {
-        return $this->votes()->wherePivot('vote', 1);
-    }
-
-    public function downVotes()
-    {
-        return $this->votes()->wherePivot('vote', -1);
-    }
 }
