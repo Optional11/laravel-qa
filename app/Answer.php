@@ -27,8 +27,8 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute()
     {
-        //to transform from markup to html using accessor
-        return \Parsedown::instance()->text($this->body);
+        //to transform from markup to html using accessor /clean = used Purifier package
+        return clean(\Parsedown::instance()->text($this->body));
     }
 
     //accessor to get date

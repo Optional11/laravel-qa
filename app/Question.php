@@ -57,8 +57,8 @@ class Question extends Model
 
     public function getBodyHtmlAttribute()
     {
-        //to transform from markup to html using accessor
-        return \Parsedown::instance()->text($this->body);
+        //to transform from markup to html using accessor // using Purifier
+        return clean($this->bodyHtml());
     }
 
     //to change best answer in db
@@ -88,6 +88,21 @@ class Question extends Model
     public function getFavoritesCountAttribute()
     {
         return $this->favorites->count();
+    }
+
+    public function getExcerptAttribute()
+    {
+        return $this->excerpt(250);
+    }
+
+    public function excerpt($length)
+    {
+        return Str::limit(strip_tags($this->bodyHtml()), $length);
+    }
+
+    private function bodyHtml()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 
 }
