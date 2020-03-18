@@ -22,7 +22,7 @@ class Question extends Model
     // defining relationship among Answer and Question
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->orderBy('votes_count', 'DESC');
     }
 
     //slug / we do not want set manually, so we need to set mutator // start with set and end with Atttribute
