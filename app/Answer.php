@@ -13,6 +13,9 @@ class Answer extends Model
 
     protected $fillable = ['body', 'user_id'];
 
+    //added due to vuej js - so accessor will be vaaibale for vue component
+    protected $appends = ['created_date'];
+
     // defining relationship among Answer and Question
     public function question()
     {

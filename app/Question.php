@@ -13,6 +13,9 @@ class Question extends Model
     // set massassigment fields
     protected $fillable = ['title', 'body'];
 
+    //added due to vuej js - so accessor will be vaaibale for vue component
+    protected $appends = ['created_date'];
+
     // defining relationship among user and Question
     public function user()
     {
