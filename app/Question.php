@@ -14,7 +14,7 @@ class Question extends Model
     protected $fillable = ['title', 'body'];
 
     //added due to vuej js - so accessor will be vaaibale for vue component
-    protected $appends = ['created_date'];
+    protected $appends = ['created_date', 'is_favorited', 'favorites_count'];
 
     // defining relationship among user and Question
     public function user()
